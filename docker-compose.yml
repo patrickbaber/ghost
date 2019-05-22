@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  ghost:
+    image: ghost:2.2-alpine
+    ports:
+      - "80:2368"
+    environment:
+      # see https://docs.ghost.org/docs/config#section-running-ghost-with-config-env-variables
+      database__client: mysql
+      database__connection__host: mysql
+      database__connection__user: db
+      database__connection__password: db
+      database__connection__database: db
+  mysql:
+    image: mariadb:10.4
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=db
+      - MYSQL_USER=db
+      - MYSQL_PASSWORD=db
+    ports:
+      - "3306:3306"
